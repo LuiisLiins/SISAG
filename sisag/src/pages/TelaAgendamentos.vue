@@ -1,49 +1,31 @@
 <template>
-    <div>
-        <div class="conteudo-principal">
-            <h1>Meus agendamentos</h1>
-            <div class="info-agendamentos">
-                <p>Agendamentos pendentes</p>
+  <div class="conteudo-principal">
+    <h1>Meus agendamentos</h1>
 
-                <p>Historico de encaminhamentos</p>
-            </div>
+    <div class="info-agendamentos">
+        <button class="inf-ag" @click="$router.push({ name: 'Agendamentos' })">
+                Agendamentos pendentes
+        </button>
 
-            <div class="lista-consultas">
-                <div class="consulta">
-                    <div class="especialidade-exame">Cardiologia</div>
-                    <div class="status">pendente</div>
-                    <div class="informaçoes">
-                        <button>Ver informações</button>
-                    </div>
-                </div>
-                <div class="consulta">
-                    <div class="especialidade-exame">Cardiologia</div>
-                    <div class="status">pendente</div>
-                    <div class="informaçoes">
-                        <button>Ver informações</button>
-                    </div>
-                </div>
-                <div class="consulta">
-                    <div class="especialidade-exame">Cardiologia</div>
-                    <div class="status">pendente</div>
-                    <div class="informaçoes">
-                        <button>Ver informações</button>
-                    </div>
-                </div>
-                <div class="consulta">
-                    <div class="especialidade-exame">Cardiologia</div>
-                    <div class="status">pendente</div>
-                    <div class="informaçoes">
-                        <button>Ver informações</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>   
+        <button class="inf-ag" @click="$router.push({ name: 'HistoricoEncaminhamentos' })">
+                Histórico de encaminhamentos
+        </button>
+      
+    </div>
+
+    <div class="lista-consultas">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-    name: 'TelaAgendamentos',
+export default {
+  name: 'TelaAgendamentos',
+    mounted() {
+        if (this.$route.name === 'TelaAgendamentos') {
+            this.$router.push({ name: 'Agendamentos' });
+        }
     }
+}
 </script>
