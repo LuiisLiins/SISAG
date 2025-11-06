@@ -12,7 +12,15 @@ class Consulta extends Model
     protected $table = 'consultas';
 
     protected $fillable = [
-        'descricao',
-        'tempo_medio_atendimento',
+        'encaminhamento_id',
+        'data_hora',
+        'medico',
+        'especialidade', 
+        'status'
     ];
+
+    public function encaminhamento()
+    {
+        return $this->belongsTo(Encaminhamento::class, 'encaminhamento_id');
+    }
 }

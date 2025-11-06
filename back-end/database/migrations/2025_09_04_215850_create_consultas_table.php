@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consultas', function (Blueprint $table) {
-            $table->id();
-            $table->text('descricao')->nullable();
-            $table->integer('tempo_medio_atendimento')->comment('Tempo médio em minutos');
-            $table->timestamps();
-            //adicionar table especialidades
-            //u
-        });
+        $table->id();
+        $table->foreignId('encaminhamento_id')->constrained('encaminhamentos')->onDelete('cascade');
+        $table->dateTime('data_hora');
+        $table->string('medico');
+        $table->string('especialidade');
+        $table->enum('status', ['solicitado', 'confirmado', 'recusado', 'realizado', 'faltou'])->default('solicitado');
+        $table->timestamps();
+    });
+
     }
 
     /**

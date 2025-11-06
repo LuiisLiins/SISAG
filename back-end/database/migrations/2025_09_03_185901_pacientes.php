@@ -6,29 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('email')->unique();
             $table->string('cpf', 14)->unique();
-            $table->string('senha');
-            $table->enum('tipo', ['paciente', 'agente', 'admin']);
+            $table->date('data_nascimento')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('endereco')->nullable();
             $table->timestamps();
-
-            //pode ter varios encaminhamentos
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('pacientes');
     }
 };
