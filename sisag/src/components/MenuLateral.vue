@@ -4,15 +4,18 @@
       <img class="logo-lateral" :src="logo2" alt="Logo" />
 
       <div class="icone">
-        <i class="fi fi-rr-home" @click="$router.push('/')"></i>
+        <!-- Tela Principal -->
+        <i class="fi fi-rr-home" @click="$router.push('/MenuCabe/TelaPrinc')"></i>
       </div>
 
       <div class="icone">
-        <i class="fi fi-rr-laptop-medical" @click="$router.push('/TelaAgendamentos')" style="font-size: 48px"></i>
+        <!-- Tela de Agendamentos -->
+        <i class="fi fi-rr-laptop-medical" @click="$router.push('/MenuCabe/TelaAgendamentos')" style="font-size: 48px"></i>
       </div>
 
       <div class="icone">
-      <i class="fi fi-rs-person-dots-from-line"  @click="$router.push('/TelaCadastro')"></i>
+        <!-- Tela de Cadastro -->
+        <i class="fi fi-rs-person-dots-from-line" @click="$router.push('/MenuCabe/TelaCadastro')"></i>
       </div>
     </div>
   </main>
@@ -27,12 +30,6 @@ export default {
     return {
       logo2
     }
-
-  },
-    methods: {
-      teste(){
-        console.log('teste');
-      }
-    }
+  }
 };
 </script>

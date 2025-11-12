@@ -85,18 +85,16 @@ header {
   overflow-x: hidden;
 }
 
-/* Título principal - versão mais discreta */
 .conteudo-principal h1 {
-  font-size: 26px;         /* menor e mais limpo */
-  color: #222;             /* preto suave */
-  text-align: left;        /* alinhado à esquerda, mais natural */
+  font-size: 26px;
+  color: #222;
+  text-align: left;
   margin-top: 20px;
   margin-bottom: 25px;
-  font-weight: 700;        /* ainda com destaque, mas sem exagero */
-  border-bottom: none;     /* remove a linha azul */
-  padding-bottom: 0;       /* remove espaçamento extra */
-} 
-
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
 /* ==================== SEPARADOR VISUAL ==================== */
 .linha-separadora {
@@ -138,7 +136,6 @@ header {
   flex-wrap: wrap;
 }
 
-/* Cartão informativo */
 .janela {
   width: 100%;
   max-width: 500px;
@@ -155,13 +152,12 @@ header {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Notificações */
 .janela-notificacao {
   width: 100%;
   max-width: 500px;
   height: auto;
-  background-color: #fff3e0; /* cor suave para destaque */
-  color: #e65100; /* texto laranja */
+  background-color: #fff3e0;
+  color: #e65100;
   border-radius: 12px;
   padding: 20px;
   margin: 5vh auto;
@@ -174,7 +170,6 @@ header {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Texto dentro da janela */
 .janela p,
 .janela-notificacao p {
   margin: 6px 0;
@@ -197,7 +192,6 @@ header {
   font-weight: 700;
   color: #0d47a1;
 }
-
 
 /* ==================== AGENDAMENTOS ==================== */
 .info-agendamentos {
@@ -302,7 +296,6 @@ header {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Cada grupo de informações */
 .comp-pessoal,
 .linha-dupla,
 .linha-tripla {
@@ -323,7 +316,6 @@ header {
   flex-wrap: wrap;
 }
 
-/* Texto */
 .informaçoes-pessoais p {
   font-size: 18px;
   color: #0d47a1;
@@ -336,7 +328,7 @@ header {
   margin-right: 6px;
 }
 
-/* Responsividade */
+/* ==================== RESPONSIVIDADE ==================== */
 @media (max-width: 768px) {
   .linha-dupla,
   .linha-tripla {
@@ -352,3 +344,4 @@ header {
     font-size: 16px;
   }
 }
+ 
