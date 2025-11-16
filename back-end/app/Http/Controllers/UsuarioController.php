@@ -40,4 +40,30 @@ class UsuarioController extends Controller
         $this->usuarioServices->deletar($id);
         return response()->noContent();
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'cpf' => 'required|string',
+            'senha' => 'required|string',
+        ]);
+
+        $usuario = $this->usuarioServices->autenticar(
+            $request->input('cpf'),
+            $request->input('senha')
+        );
+
+        if ($usuario) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Login realizado com sucesso',
+                'usuario' => $usuario
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'CPF ou senha incorretos'
+        ], 401);
+    }
 }

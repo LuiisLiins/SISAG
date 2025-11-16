@@ -5,10 +5,10 @@
             
             <div class="usuario-info">
                 <h1>Sistema Integrado de Saúde e Agendamento</h1>
-                <p>"Nome completo do usuario/funcionario"</p>
+                <p>{{ userStore.nomeUsuario || 'Usuário não identificado' }}</p>
 
                 <div class="user-down">
-                    <p>"Nivel de permissão"</p>
+                    <p>{{ nivelPermissao }}</p>
                     <i class="fi fi-rr-angle-small-down"></i>
                 </div>    
             </div>    
@@ -19,15 +19,36 @@
 </template>
 
 <script>
+    import { useUserStore } from '../stores/userStore';
     import logo3 from '../assets/logo3.png';
 
     export default {
     name: 'Cabecalho',
 
+    setup() {
+        const userStore = useUserStore();
+        return { userStore };
+    },
+
     data() {
         return {
         logo3
         }
+    },
+
+    computed: {
+        nivelPermissao() {
+            const tipo = this.userStore.tipoUsuario;
+            if (tipo === 'admin') return 'Administrador';
+            if (tipo === 'agente') return 'Agente de Saúde';
+            if (tipo === 'paciente') return 'Paciente';
+            return 'Não definido';
+        }
+    },
+
+    mounted() {
+        // Carrega os dados do usuário do localStorage se necessário
+        this.userStore.loadUsuarioFromStorage();
     }
-    };
+    }
 </script>

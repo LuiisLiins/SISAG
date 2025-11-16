@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { useUserStore } from '../stores/userStore'
+
 export default {
   name: "TelaLogin",
   data() {
@@ -57,6 +59,10 @@ export default {
       senha: "",
       lembrar: false,
     };
+  },
+  setup() {
+    const userStore = useUserStore()
+    return { userStore }
   },
   methods: {
     // Bloqueia letras e outros caracteres (só permite números)
@@ -87,17 +93,35 @@ export default {
       this.cpf = valor;
     },
 
-    entrar() {
+    async entrar() {
       if (this.cpf === "" || this.senha === "") {
         alert("Por favor, preencha CPF e senha.");
         return;
       }
-      else if (this.cpf !== "123.456.789-00" || this.senha !== "senha123") {
-        alert("CPF ou senha incorretos.");
-        return;
-      }
 
-      this.$router.push("/MenuCabe/TelaPrinc");
+      try {
+        const response = await this.$axios.post("/api/login", {
+          cpf: this.cpf,
+          senha: this.senha,
+        });
+
+        if (response.data.success) {
+          // Salva os dados do usuário na store
+          this.userStore.setUsuario(response.data.usuario);
+          
+          alert(`Bem-vindo, ${response.data.usuario.nome}!`);
+          this.$router.push("/MenuCabe/TelaPrinc");
+        } else {
+          alert(response.data.message);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          alert("CPF ou senha incorretos.");
+        } else {
+          alert("Erro ao tentar fazer login. Tente novamente.");
+          console.error("Erro no login:", error);
+        }
+      }
     },
   },
 };

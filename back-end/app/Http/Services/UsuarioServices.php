@@ -48,5 +48,24 @@ class UsuarioServices
     {
         Usuario::destroy($id);
     }
+
+    /**
+     * Autentica um usuário por CPF e senha
+     */
+    public function autenticar(string $cpf, string $senha): ?Usuario
+    {
+        // Remove formatação do CPF (deixa só números)
+        $cpfLimpo = preg_replace('/\D/', '', $cpf);
+        
+        // Busca usuário pelo CPF
+        $usuario = Usuario::where('cpf', $cpfLimpo)->first();
+        
+        // Verifica se encontrou o usuário e se a senha está correta
+        if ($usuario && $usuario->senha === $senha) {
+            return $usuario;
+        }
+        
+        return null;
+    }
 }
 
