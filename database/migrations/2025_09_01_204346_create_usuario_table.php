@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('cartao_sus', 20)->nullable();
             $table->string('estado_civil', 30)->nullable();
             $table->string('nome_mae')->nullable();
+            $table->string('nome_pai')->nullable();
             $table->string('senha');
             $table->enum('tipo', ['paciente', 'agente', 'admin']);
             $table->string('telefone', 20)->nullable();
