@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('encaminhamentos', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
+        $table->foreignId('usuario_id')->constrained('usuario')->onDelete('cascade');
         $table->foreignId('unidade_id')->constrained('unidades_saude');
-        $table->string('especialidade');
+        $table->string('especialidade_id');
+        $table->date('dt_solicitacao');
+        $table->date('dt_agendamento');
         $table->enum('nivel_urgencia', ['eletivo', 'prioritario', 'urgente', 'emergente']);
         $table->text('observacoes')->nullable();
-        $table->enum('status', ['aguardando', 'encaminhado', 'confirmado', 'recusado'])->default('aguardando');
+        $table->enum('status', ['Pendente', 'Concluído', 'Perdido'])->default('Pendente');
         $table->timestamps();
     });
 

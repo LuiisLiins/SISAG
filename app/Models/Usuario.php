@@ -38,4 +38,10 @@ class Usuario extends Model
     {
         return $this->belongsTo(UnidadesSaude::class, 'unidade_saude_id');
     }
+
+    
+    public function encaminhamentos()
+    {
+        return $this->hasMany(Encaminhamento::class, 'usuario_id');
+    }
 }

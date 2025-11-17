@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();;
             $table->string('cpf', 14)->unique();
             $table->string('rg', 20)->nullable();
             $table->string('sexo', 20)->nullable();
             $table->string('cartao_sus', 20)->nullable();
             $table->string('estado_civil', 30)->nullable();
+            $table->string('nome_mae')->nullable();
             $table->string('senha');
             $table->enum('tipo', ['paciente', 'agente', 'admin']);
             $table->string('telefone', 20)->nullable();

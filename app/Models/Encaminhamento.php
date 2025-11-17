@@ -12,21 +12,28 @@ class Encaminhamento extends Model
     protected $table = 'encaminhamentos';
 
     protected $fillable = [
-        'paciente_id',
+        'usuario_id',
         'unidade_id',
-        'especialidade',
+        'especialidade_id',
+        'dt_solicitacao',
+        'dt_agendamento',
         'nivel_urgencia',
         'observacoes',
         'status'
     ];
 
-    public function paciente()
+    public function usuarioa()
     {
-        return $this->belongsTo(paciente::class, 'paciente_id');
+        return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     public function unidade()
     {
         return $this->belongsTo(UnidadesSaude::class, 'unidade_id');
+    }
+
+    public function especialidade()
+    {
+        return $this->belongsTo(Especialidades::class,'especialidade_id');
     }
 }

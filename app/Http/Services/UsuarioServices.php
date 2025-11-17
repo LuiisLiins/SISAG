@@ -13,6 +13,7 @@ class UsuarioServices
     public function listarTodos(): Collection
     {
         return Usuario::all();
+        
     }
 
     /**
@@ -58,8 +59,10 @@ class UsuarioServices
         $cpfLimpo = preg_replace('/\D/', '', $cpf);
         
         // Busca usuário pelo CPF
-        $usuario = Usuario::where('cpf', $cpfLimpo)->first();
-        
+        $usuario = Usuario::where('cpf', $cpf)->first();
+        // $todos = Usuario::all();
+
+        // dd($todos);
         // Verifica se encontrou o usuário e se a senha está correta
         if ($usuario && $usuario->senha === $senha) {
             return $usuario;
