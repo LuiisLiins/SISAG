@@ -13,4 +13,12 @@ class UnidadesSaude extends Model
         'endereco',
         'telefone',
     ];
+
+    /**
+     * Relacionamento: Uma unidade de saúde pode ter vários usuários
+     */
+    public function usuarios()
+    {
+        return $this->hasMany(Usuario::class, 'unidade_saude_id');
+    }
 }

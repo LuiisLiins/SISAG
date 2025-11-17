@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\UsuarioServices;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -54,6 +55,9 @@ class UsuarioController extends Controller
         );
 
         if ($usuario) {
+            // Carrega o relacionamento com a unidade de saúde
+            $usuario->load('unidadeSaude');
+
             return response()->json([
                 'success' => true,
                 'message' => 'Login realizado com sucesso',
@@ -65,5 +69,33 @@ class UsuarioController extends Controller
             'success' => false,
             'message' => 'CPF ou senha incorretos'
         ], 401);
+    }
+
+    public function getUnidadeSaude($id)
+    {
+        $usuario = $this->usuarioServices->buscarPorId($id);
+
+        if (!$usuario) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Usuário não encontrado'
+            ], 404);
+        }
+
+        $unidadeSaude = $usuario->unidadeSaude;
+
+        if ($unidadeSaude) {
+
+            $usuario_unidade_saude = Usuario::where('unidade_saude_id', $unidadeSaude->id)->get();
+            return response()->json([
+                'success' => true,
+                'usuarios' => $usuario_unidade_saude
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Usuário não está associado a nenhuma unidade de saúde'
+            ], 404);
+        }
     }
 }

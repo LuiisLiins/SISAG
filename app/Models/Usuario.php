@@ -17,6 +17,7 @@ class Usuario extends Model
         'cartao_sus',
         'estado_civil',
         'tipo',
+        'unidade_saude_id',
         'senha',
         'telefone',
         'data_nascimento',
@@ -29,4 +30,12 @@ class Usuario extends Model
     protected $casts = [
         'data_nascimento' => 'date',
     ];
+
+    /**
+     * Relacionamento: Um usuário pertence a uma unidade de saúde
+     */
+    public function unidadeSaude()
+    {
+        return $this->belongsTo(UnidadesSaude::class, 'unidade_saude_id');
+    }
 }
