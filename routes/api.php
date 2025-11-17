@@ -20,7 +20,7 @@ Route::apiResource('/usuarios', UsuarioController::class);
 
 Route::get('/usuarios/{id}/unidade-saude', [UsuarioController::class, 'getUnidadeSaude']);
 
-Route::apiResource('consultas', ConsultaController::class);
+Route::apiResource('encaminhamentos', EncaminhamentoController::class);
 
 Route::apiResource('unidades-saude', UnidadesSaudeController::class);
 
@@ -52,13 +52,13 @@ Route::apiResource('transporte', TransporteController::class);
 // });
 
 
-// Route::prefix('encaminhamentos')->group(function () {
-//     Route::get('/', [EncaminhamentoController::class, 'index'])->name('listar_encaminhamentos');
-//     Route::post('/criar', [EncaminhamentoController::class, 'store'])->name('criar_encaminhamento');
-//     Route::get('/buscar/{id}', [EncaminhamentoController::class, 'show'])->name('mostrar_encaminhamento');
-//     Route::put('/editar/{id}', [EncaminhamentoController::class, 'update'])->name('atualizar_encaminhamento');
-//     Route::delete('/deletar/{id}', [EncaminhamentoController::class, 'destroy'])->name('deletar_encaminhamento');
-// });
+Route::prefix('encaminhamentos')->group(function () {
+    Route::get('/', [EncaminhamentoController::class, 'index'])->name('listar_encaminhamentos');
+    Route::post('/criar', [EncaminhamentoController::class, 'store'])->name('criar_encaminhamento');
+    Route::get('/buscar/{id}', [EncaminhamentoController::class, 'show'])->name('mostrar_encaminhamento');
+    Route::put('/editar/{id}', [EncaminhamentoController::class, 'update'])->name('atualizar_encaminhamento');
+    Route::delete('/deletar/{id}', [EncaminhamentoController::class, 'destroy'])->name('deletar_encaminhamento');
+});
 
 // Route::prefix('pacientes')->group(function () {
 //     Route::get('/', [PacienteController::class, 'index']) ->name('listar_pacientes');

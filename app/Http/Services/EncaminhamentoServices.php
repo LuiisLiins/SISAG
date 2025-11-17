@@ -66,17 +66,17 @@ class EncaminhamentoServices
         }
 
 
-        if (isset($dados['telefone']) && trim($dados['telefone']) !== trim($usuario->telefone)) {
-            $erros[] = "O telefone não confere.";
-        }
+        // if (isset($dados['telefone']) && trim($dados['telefone']) !== trim($usuario->telefone)) {
+        //     $erros[] = "O telefone não confere.";
+        // }
 
         if (!empty($erros)) {
             throw new Exception(implode(" ", $erros));
         }
         $dadosEncaminhamento = [
-            'usuario_id'      => $usuario->id,
+            'usuario_id'      => $dados['usuario_id'],
             'unidade_id'      => $dados['unidade_id'],
-            'especialidade_id' => $dados['especialidade_id'],
+            // 'especialidade_id' => $dados['especialidade_id'],
             'dt_solicitacao'  => $dados['dt_solicitacao'] ?? now()->toDateString(),
             'dt_agendamento'  => $dados['dt_agendamento'],
             'nivel_urgencia'  => $dados['nivel_urgencia'],
