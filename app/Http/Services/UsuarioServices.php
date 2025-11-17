@@ -13,7 +13,7 @@ class UsuarioServices
     public function listarTodos(): Collection
     {
         return Usuario::all();
-        
+
     }
 
     /**
@@ -29,7 +29,7 @@ class UsuarioServices
      */
     public function buscarPorId(int $id): Usuario
     {
-        return Usuario::findOrFail($id);
+        return Usuario::with(['unidadeSaude', 'encaminhamentos'])->findOrFail($id);
     }
 
     /**
@@ -57,7 +57,7 @@ class UsuarioServices
     {
         // Remove formatação do CPF (deixa só números)
         $cpfLimpo = preg_replace('/\D/', '', $cpf);
-        
+
         // Busca usuário pelo CPF
         $usuario = Usuario::where('cpf', $cpf)->first();
         // $todos = Usuario::all();
@@ -67,7 +67,7 @@ class UsuarioServices
         if ($usuario && $usuario->senha === $senha) {
             return $usuario;
         }
-        
+
         return null;
     }
 }

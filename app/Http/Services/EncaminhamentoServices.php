@@ -35,6 +35,7 @@ class EncaminhamentoServices
             'nivel_urgencia' => $encaminhamento->nivel_urgencia,
             'status' => $encaminhamento->status,
             'observacoes' => $encaminhamento->observacoes,
+            'precisa_transporte' => $encaminhamento->precisa_transporte,
             'unidade' => [
                 'id' => $encaminhamento->unidade->id ?? null,
                 'nome' => $encaminhamento->unidade->nome ?? null,
@@ -95,6 +96,7 @@ class EncaminhamentoServices
             'observacoes'     => $dados['observacoes'] ?? null,
             'status'          => 'Pendente',
             'medico'          => $dados['medico'] ?? null,
+            'precisa_transporte' => $dados['precisa_transporte'] ?? false,
         ];
 
         return Encaminhamento::create($dadosEncaminhamento);

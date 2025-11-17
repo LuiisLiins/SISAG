@@ -22,6 +22,7 @@ class Encaminhamento extends Model
         'especialidade',
         'telefone',
         'medico',
+        'precisa_transporte',
     ];
 
     public function usuario()
@@ -37,5 +38,10 @@ class Encaminhamento extends Model
     public function especialidade()
     {
         return $this->belongsTo(Especialidades::class,'especialidade_id');
+    }
+
+    public function transporte()
+    {
+        return $this->belongsTo(Transporte::class, 'transporte_id');
     }
 }
