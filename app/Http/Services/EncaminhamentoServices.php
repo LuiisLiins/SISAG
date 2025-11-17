@@ -21,21 +21,32 @@ class EncaminhamentoServices
 {
     return Encaminhamento::with([
         'unidade:id,nome,endereco',
-        'especialidade:id,nome,especialidade'
+        'usuario:id,nome,telefone,cpf,email'
     ])
     ->get()
     ->map(function ($encaminhamento) {
         return [
             'id' => $encaminhamento->id,
-            'especialidade' => $encaminhamento->especialidade->especialidade ?? null,
-            'medico' => $encaminhamento->especialidade->nome ?? null,
+            'especialidade' => $encaminhamento->especialidade,
+            'medico' => $encaminhamento->medico,
             'data_solicitacao' => $encaminhamento->dt_solicitacao,
+            'telefone' => $encaminhamento->telefone,
             'data_agendamento' => $encaminhamento->dt_agendamento,
             'nivel_urgencia' => $encaminhamento->nivel_urgencia,
+            'status' => $encaminhamento->status,
+            'observacoes' => $encaminhamento->observacoes,
             'unidade' => [
+                'id' => $encaminhamento->unidade->id ?? null,
                 'nome' => $encaminhamento->unidade->nome ?? null,
                 'endereco' => $encaminhamento->unidade->endereco ?? null
-            ]
+            ],
+            'usuario' => [
+                'id' => $encaminhamento->usuario->id ?? null,
+                'nome' => $encaminhamento->usuario->nome ?? null,
+                'cpf' => $encaminhamento->usuario->cpf ?? null,
+                'telefone' => $encaminhamento->usuario->telefone ?? null,
+                'email' => $encaminhamento->usuario->email ?? null,
+            ],
         ];
     });
 }
@@ -79,7 +90,7 @@ class EncaminhamentoServices
             'especialidade' => $dados['especialidade'],
             'telefone' => $dados['telefone'],
             'dt_solicitacao'  => $dados['dt_solicitacao'] ?? now()->toDateString(),
-            'dt_agendamento'  => $dados['dt_agendamento'],
+            'dt_agendamento'  => $dados['dt_agendamento'] ?? null,
             'nivel_urgencia'  => $dados['nivel_urgencia'],
             'observacoes'     => $dados['observacoes'] ?? null,
             'status'          => 'Pendente'
@@ -94,7 +105,7 @@ class EncaminhamentoServices
      */
     public function buscarPorId(int $id): Encaminhamento
     {
-        return Encaminhamento::with(['unidade'])->findOrFail($id);
+        return Encaminhamento::with(['unidade', 'usuario', 'especialidade'])->findOrFail($id);
     }
 
     /**

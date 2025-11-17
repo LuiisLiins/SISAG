@@ -17,10 +17,10 @@ return new class extends Migration
         $table->foreignId('unidade_id')->constrained('unidades_saude');
         $table->string('especialidade_id');
         $table->date('dt_solicitacao');
-        $table->date('dt_agendamento');
+        $table->date('dt_agendamento')->nullable();
         $table->enum('nivel_urgencia', ['eletivo', 'prioritario', 'urgente', 'emergente']);
         $table->text('observacoes')->nullable();
-        $table->enum('status', ['Pendente', 'Concluído', 'Perdido'])->default('Pendente');
+        $table->enum('status', ['Pendente', 'Concluído', 'Perdido','Cancelado','Agendado'])->default('Pendente');
         $table->timestamps();
     });
 
