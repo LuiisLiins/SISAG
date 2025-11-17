@@ -14,12 +14,13 @@ class Encaminhamento extends Model
     protected $fillable = [
         'usuario_id',
         'unidade_id',
-        'especialidade_id',
         'dt_solicitacao',
         'dt_agendamento',
         'nivel_urgencia',
         'observacoes',
-        'status'
+        'status',
+        'especialidade',
+        'telefone',
     ];
 
     public function usuarioa()

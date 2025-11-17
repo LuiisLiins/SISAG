@@ -76,7 +76,8 @@ class EncaminhamentoServices
         $dadosEncaminhamento = [
             'usuario_id'      => $dados['usuario_id'],
             'unidade_id'      => $dados['unidade_id'],
-            // 'especialidade_id' => $dados['especialidade_id'],
+            'especialidade' => $dados['especialidade'],
+            'telefone' => $dados['telefone'],
             'dt_solicitacao'  => $dados['dt_solicitacao'] ?? now()->toDateString(),
             'dt_agendamento'  => $dados['dt_agendamento'],
             'nivel_urgencia'  => $dados['nivel_urgencia'],
