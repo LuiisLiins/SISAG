@@ -12,6 +12,7 @@ class UnidadesSaude extends Model
         'nome',
         'endereco',
         'telefone',
+        'email',
     ];
 
     /**

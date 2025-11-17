@@ -93,7 +93,8 @@ class EncaminhamentoServices
             'dt_agendamento'  => $dados['dt_agendamento'] ?? null,
             'nivel_urgencia'  => $dados['nivel_urgencia'],
             'observacoes'     => $dados['observacoes'] ?? null,
-            'status'          => 'Pendente'
+            'status'          => 'Pendente',
+            'medico'          => $dados['medico'] ?? null,
         ];
 
         return Encaminhamento::create($dadosEncaminhamento);

@@ -21,6 +21,7 @@ class Encaminhamento extends Model
         'status',
         'especialidade',
         'telefone',
+        'medico',
     ];
 
     public function usuario()
