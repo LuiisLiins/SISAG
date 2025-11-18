@@ -14,15 +14,20 @@ class Encaminhamento extends Model
     protected $fillable = [
         'usuario_id',
         'unidade_id',
+        'unidade_agendamento_id',
         'dt_solicitacao',
         'dt_agendamento',
+        'horario',
         'nivel_urgencia',
         'observacoes',
         'status',
         'especialidade',
         'telefone',
         'medico',
+        'medico_agendado',
         'precisa_transporte',
+        'endereco',
+        'transporte_id',
     ];
 
     public function usuario()
@@ -33,6 +38,11 @@ class Encaminhamento extends Model
     public function unidade()
     {
         return $this->belongsTo(UnidadesSaude::class, 'unidade_id');
+    }
+
+    public function unidadeAgendamento()
+    {
+        return $this->belongsTo(UnidadesSaude::class, 'unidade_agendamento_id');
     }
 
     public function especialidade()

@@ -11,5 +11,9 @@ class Transporte extends Model
     protected $fillable = [
         'motorista',
         'placa_veiculo',
+        'horario_saida',
+        'data_saida',
+        'tipo_veiculo',
+        'observacoes',
     ];
 }
